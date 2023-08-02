@@ -1,12 +1,17 @@
-import { getData } from './useGetData';
-import { useEffect } from 'react';
+import Post from './Post';
+// import { getData } from './useGetData';
+// import { useEffect } from 'react';
 
 function App() {
-	useEffect(() => {
-		getData();
-	}, []);
+	// useEffect(() => {
+	// 	getData();
+	// }, []);
 
-	return <div className='App'></div>;
+	return (
+		<div className='App'>
+			<Post />
+		</div>
+	);
 }
 
 export default App;
