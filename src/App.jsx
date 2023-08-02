@@ -1,25 +1,25 @@
-import Post from './Post';
 import { Suspense } from 'react';
-// import { getData } from './useGetData';
-// import { useEffect } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Flickr from './Flickr';
+import Youtube from './Youtube';
 
 function App() {
-	// useEffect(() => {
-	// 	getData();
-	// }, []);
-
+	const queryClient = new QueryClient();
 	return (
-		<div className='App'>
-			<h1>App</h1>
-			{/* Suspence로 특정컴포넌트 그룹을 묶으면 해당 그룹만 동기화 처리 */}
-			<Suspense fallback={<p>Posts loading</p>}>
-				<h1>Posts</h1>
-				<Post />
-			</Suspense>
-		</div>
+		<QueryClientProvider client={queryClient}>
+			<div className='App'>
+				<h1>App</h1>
+				<Suspense fallback={<p>Youtube Loading...</p>}>
+					<Youtube />
+
+					<Suspense fallback={<p>Flickr Loading...</p>}>
+						<Flickr />
+					</Suspense>
+				</Suspense>
+			</div>
+		</QueryClientProvider>
 	);
 }
-
 export default App;
 
 /*
